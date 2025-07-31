@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My English Class - Mr. Yetno Hartono, S.Pd</title>
+    <meta name="description" content="Interactive English learning website by Yetno Hartono, S.Pd. from SMAN 1 Sumenep. Experience modern education with engaging content." />
+    <meta name="author" content="Yetno Hartono, S.Pd." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid white;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Styles */
+        .content-text {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+            text-align: justify;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-text p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .content-text b, .content-text strong {
+            color: #333;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .gallery figure {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery figure:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery figcaption {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Learning Objectives */
+        .learning-objectives {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 3rem;
+        }
+
+        .learning-objectives ol, .learning-objectives ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .learning-objectives li {
+            margin-bottom: 0.75rem;
+            color: #555;
+        }
+
+        .learning-objectives a {
+            color: #3b82f6;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .learning-objectives a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <div class="logo-text">
+                    <h1>English Class</h1>
+                    <p>by Yetno Hartono</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#objectives">Objectives</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My<br><span class="floating">English Class</span></h1>
+            <div class="subtitle">Assalamualaikum Warahmatullahi Wabarakatuh</div>
+            <div class="description">Learn English with Passion and Innovation</div>
+
+            <div class="profile-card">
+                <img src="img/bapak.png" alt="Headshot portrait of Mr. Yetno Hartono">
+                <div class="profile-name">Mr. Yetno Hartono, S.Pd</div>
+                <div class="profile-title">English Teacher at SMAN 1 Sumenep</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-description">Get to know your dedicated English educator</p>
+            </div>
+
+            <div class="content-text">
+    <p><b>Assalamualaikum Warahmatullahi Wabarakatuh</b></p>
+    
+    <p>
+        Praise be to Allah SWT for all the grace and blessings, so that I can complete the creation of this learning website. Let me introduce myself, I am Yetno Hartono, S.Pd., an English teacher at SMAN 1 Sumenep. I was born in Sumenep on September 26, 1985.
+        <br><i>Segala puji bagi Allah SWT atas segala rahmat dan karunia-Nya, sehingga saya dapat menyelesaikan pembuatan situs web pembelajaran ini. Perkenalkan, saya Yetno Hartono, S.Pd., seorang guru Bahasa Inggris di SMAN 1 Sumenep. Saya lahir di Sumenep pada tanggal 26 September 1985.</i>
+    </p>
+    
+    <p>
+        As an educator, I feel very fortunate to be able to share knowledge and experience with students. Besides teaching English, I also have hobbies in adventure, such as traveling and mountain climbing. These activities not only refresh the mind but also provide new inspiration in the learning process.
+        <br><i>Sebagai seorang pendidik, saya merasa sangat beruntung dapat berbagi ilmu dan pengalaman dengan para siswa. Selain mengajar bahasa Inggris, saya juga memiliki hobi petualangan, seperti traveling dan mendaki gunung. Kegiatan-kegiatan ini tidak hanya menyegarkan pikiran tetapi juga memberikan inspirasi baru dalam proses pembelajaran.</i>
+    </p>
+    
+    <p>
+        Before teaching at SMAN 1 Sumenep, I used to teach Mandarin/Chinese in several schools in Malang, such as SMKN 1 Turen, SMKN 1 Pujon, SMAN 3 Malang, and SMPN 5 Malang. This experience of teaching various languages gave me a broader understanding of the language learning process in general.
+        <br><i>Sebelum mengajar di SMAN 1 Sumenep, saya pernah mengajar bahasa Mandarin/Tionghoa di beberapa sekolah di Malang, seperti SMKN 1 Turen, SMKN 1 Pujon, SMAN 3 Malang, dan SMPN 5 Malang. Pengalaman mengajar berbagai bahasa ini memberi saya pemahaman yang lebih luas tentang proses pembelajaran bahasa secara umum.</i>
+    </p>
+    
+    <p>
+        Since 2009 until now, I have dedicated myself to SMAN 1 Sumenep. Through this website, I want to create a more interactive and enjoyable learning space for students. Here, students can find various learning materials, practice questions, and the latest information about English.
+        <br><i>Sejak tahun 2009 hingga sekarang, saya telah mendedikasikan diri untuk SMAN 1 Sumenep. Melalui website ini, saya ingin menciptakan ruang belajar yang lebih interaktif dan menyenangkan bagi para siswa. Di sini, siswa dapat menemukan berbagai materi pembelajaran, soal latihan, dan informasi terbaru seputar bahasa Inggris.</i>
+    </p>
+    
+    <p>
+        Hopefully, this website can be beneficial for everyone, students, teachers, and the wider community. Constructive criticism and suggestions are highly expected so that this website can continue to grow and become a quality learning resource.
+        <br><i>Semoga situs web ini bermanfaat bagi semua orang, baik siswa, guru, maupun masyarakat luas. Kritik dan saran yang membangun sangat kami harapkan agar situs web ini dapat terus berkembang dan menjadi sumber belajar yang berkualitas.</i>
+    </p>
+    
+    <p><b>Wassalamualaikum Warahmatullahi Wabarakatuh</b></p>
+</div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section" style="background: #f8f9ff;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Picture Gallery</h2>
+                <p class="section-description">Memorable moments from my teaching journey</p>
+            </div>
+
+            <div class="gallery">
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Studying+English+with+Miss+Maria" alt="Students in classroom studying English with Miss Maria, all female students wearing brown uniforms smiling inside a formal classroom with windows and posters" onerror="this.style.display='none';" />
+                    <figcaption>Studying English with Miss Maria</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Studying+English+with+Miss+Maria" alt="Students in classroom studying English with Miss Maria, all female students wearing white uniforms smiling and raising hands in an indoor classroom" onerror="this.style.display='none';" />
+                    <figcaption>Studying English with Miss Maria</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Mt.+Buthak+Hiking+%28Malang%29+Part+1" alt="Group of students and teacher hiking Mt. Buthak Malang posing next to Indonesian flag on top of rocky mountain with blue skies" onerror="this.style.display='none';" />
+                    <figcaption>Mt. Buthak Hiking (Malang) Part 1</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Mt.+Buthak+Hiking+%28Malang%29+Part+2" alt="Another group photo of hiking Mt. Buthak Malang, group of students posing smiling in casual hiking clothes with mountaintop and forest background" onerror="this.style.display='none';" />
+                    <figcaption>Mt. Buthak Hiking (Malang) Part 2</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Mt.+Penanggungan+Hiking+%28Probolinggo%29" alt="Group of students and teacher posing on rocky terrain during Mt. Peranggungan hiking in Probolinggo with mountain landscape and sunny skies" onerror="this.style.display='none';" />
+                    <figcaption>Mt. Penanggungan Hiking (Mojokerto)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Sekkaran+Hill+Hiking+Group+1" alt="Hiking group holding blue 'Mountay' flag on scenic hilltop with green grass and clear blue sky" onerror="this.style.display='none';" />
+                    <figcaption>Sekkaran Hill Hiking</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Sekkaran+Hill+Hiking+Group+2" alt="Students on Sekkaran hilltop hiking, posing on rocks and the hill with blue sky and green background" onerror="this.style.display='none';" />
+                    <figcaption>Sekkaran Hill Hiking</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Sekkaran+Hill+Hiking+Flag" alt="Two students holding blue 'Mountay' flag on Sekkaran hilltop in sunny outdoor setting with trees and sky" onerror="this.style.display='none';" />
+                    <figcaption>Sekkaran Hill Hiking</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Exercising+with+Students+Group+1" alt="Three people jogging on paved city road with trees and buildings in background, wearing sportswear" onerror="this.style.display='none';" />
+                    <figcaption>Exercising with Students</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Exercising+with+Students+Group+2" alt="Group of men standing on paved area near pool, dressed in casual sportswear during sunset" onerror="this.style.display='none';" />
+                    <figcaption>Exercising with Students</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Exercising+with+Students+Group+3" alt="Group of men sitting on wooden bridge surrounded by water and greenery during daytime" onerror="this.style.display='none';" />
+                    <figcaption>Exercising with Students</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Exercising+with+Students+Group+4" alt="Group of runners sitting on street corner resting during evening jogging session" onerror="this.style.display='none';" />
+                    <figcaption>Exercising with Students</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Exercising+with+Students+Group+5" alt="Two men running along residential street during daytime, casual sportswear" onerror="this.style.display='none';" />
+                    <figcaption>Exercising with Students</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://placehold.co/320x240?text=Exercising+with+Students+Group+6" alt="Two men standing at seaside promenade with bicycle parked behind, beach in background" onerror="this.style.display='none';" />
+                    <figcaption>Exercising with Students</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section id="objectives" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Learning Objectives</h2>
+                <p class="section-description">For the 1st semester of Academic Year 2025-2026</p>
+            </div>
+
+            <div class="learning-objectives">
+                <p>For the 2025-2026 academic year (1st semester), the learning objectives for English in Phase E is:<br/>
+                <em><b>Students are able to understand, identify the purpose, text structure, and linguistic features, design, compose and present : Descriptive text and Recount text"</b></em></p>
+                <br></br>
+                <p><b><i>Today's Learning Objectives are :</i></b></p>
+
+                <ol>
+                    <li><b>1st Meeting</b> 
+                        <ul>
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfMzvH18KumP3XEzrCMNoHwYTlVct4HZ4iOZLM3etTmM3im0A/viewform" target="_blank" rel="noopener">Asesmen Diagnostik Non-kognitif</a></li>
+                        </ul>
+                    </li>
+                    <li><b>2nd Meeting</b> 
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=k7KjxyZ9W2I" target="_blank" rel="noopener">Learning Video 1 (Full English)</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=vG7_v3Xc3v0" target="_blank" rel="noopener">Learning Video 2 (Billingual)</a></li>
+                            <li><a href="https://drive.google.com/file/d/1gj6yviSXBYNa3eUrjXh_JM2KnvXlEYLP/view?usp=sharing" target="_blank" rel="noopener">Summary of the Lesson : Direct - Indirect Speech (Quoted - Reported Speech)</a></li>
+                            <li>
+                                <b>Exercises:</b> <a href="https://drive.google.com/file/d/1WdQKm6gUU5X7Vpq67IwQAGlDFuQg0xaG/view?usp=sharing" target="_blank" rel="noopener">Latihan Soal</a>
+                            </li>
+                            <li>
+                                <b>Assessment 2:</b> <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUH5yfiB6d00Tnmm5prRfFwvepWBDLX6MYDg4rF522itlc1A/viewform?usp=sharing" target="_blank" rel="noopener">Direct - Indirect Speech</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><b>3rd Meeting</b> 
+                        <ul>
+                            <li><a href="https://drive.google.com/file/d/1hAmaBq2owpwj6ED3XcTt_2vQT0DNB-_o/view?usp=sharing" target="_blank" rel="noopener">Summary of the Lesson : Preposition of Time</a></li>
+                            <li>
+                                <b>Exercises:</b> <a href="https://drive.google.com/file/d/1zn-Ksr4f-oF5biSrXL-zrYR5nE4tqpV5/view?usp=sharing" target="_blank" rel="noopener">Latihan Soal</a>
+                            </li>
+                            <li>
+                                <b>Assessment 3:</b> <a href="https://docs.google.com/forms/d/e/1FAIpQLScYeJKECkGvU79HUFB61TWuJnx9D6YvPlXCs0KrBChpe7s_pA/viewform?usp=sharing" target="_blank" rel="noopener">Preposition of Time</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><b>4th Meeting</b> 
+                        <ul>
+                            <li><a href="https://drive.google.com/file/d/1xyZeBPvD2IatAVO3HrJsMZQvS2w53u-4/view?usp=drive_link" target="_blank" rel="noopener">Summary of the Lesson : Passive Sentence</a></li>
+                            <li>
+                                <b>Exercises:</b> <a href="https://drive.google.com/file/d/111-Ywwz3c2B2j3QOy_mcwQds4rwyUczI/view?usp=drive_link" target="_blank" rel="noopener">Latihan Soal</a>
+                            </li>
+                            <li>
+                                <b>Assessment 4:</b> <a href="https://docs.google.com/forms/d/e/1FAIpQLScG9YKhq6qMWz_8MmH4IYkG3TRjilsjgeesGjiZx3DYUsOb9g/viewform?usp=sharing" target="_blank" rel="noopener">Passive Sentence</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <p><b>LATIHAN SOAL LITERASI UTBK BHS INGGRIS KELAS XII F:</b></p>
+                <ul>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1SXdhl40n1anX211YsaJrDikVGp6uorVljqWzIUf-TSXisA/viewform?usp=sharing" target="_blank" rel="noopener">LATIHAN SOAL UTBK BAHASA INGGRIS 1</a></li>
+                    <li><a href="https://drive.google.com/file/d/1ND6zYJHoCWbqOmjzylXaBhoEcmHiY7Ct/view?usp=sharing" target="_blank" rel="noopener">DOWNLOAD LEMBAR SOAL</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeuuLblVU7hCpahr0AtycUsLKpYnAztnKEp5qk9m1_l-U0Ycg/viewform?usp=sharing" target="_blank" rel="noopener">LATIHAN SOAL UTBK BAHASA INGGRIS 2</a></li>
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd7JceB9aNL1jIeHq2_HS6tU5XJOI9Df_Uo61XmQAu3uDiwew/viewform?usp=sharing" target="_blank" rel="noopener">LATIHAN SOAL UTBK BAHASA INGGRIS 3</a></li>
+                    <li><a href="https://drive.google.com/file/d/178iKISsrE9mjp-Rn_XHS2OeMLGqh_45R/view?usp=sharing" target="_blank" rel="noopener">DOWNLOAD LEMBAR SOAL</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <h3>Get In Touch</h3>
+            <p>Ready to start your English learning journey? Contact me through any of the following methods:</p>
+            
+            <div class="contact-links">
+                <a href="mailto:yetno354@gmail.com" class="contact-link">
+                    <span>📧</span> yetno354@gmail.com
+                </a>
+                <a href="https://wa.me/+6282245015849" class="contact-link">
+                    <span>📞</span> 0822-4501-5848
+                </a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Yetno Hartono, S.Pd. - English Teacher at SMAN 1 Sumenep</p>
+                <p>Dedicated to inspiring English learners since 1981</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple animation on scroll
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.gallery figure, .learning-objectives, .content-text');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize elements with fade-in effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.gallery figure, .learning-objectives, .content-text');
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.6s ease';
+            });
+        });
+    </script>
+</body>
+</html>a
